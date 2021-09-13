@@ -1,6 +1,6 @@
 const Loading = ({ loadingInfo }) => {
   return (
-    <div className="h-screen w-screen fixed left-0 top-0 bg-gray-700 z-50">
+    <div className="h-screen w-screen fixed left-0 top-0 bg-black z-50">
       <div className="h-full mx-auto w-4/5 lg:w-1/2 flex flex-col justify-center">
         <div className="flex flex-row justify-center w-full">
           <svg
