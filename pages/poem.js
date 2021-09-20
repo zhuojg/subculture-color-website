@@ -86,7 +86,8 @@ const Poem = () => {
                 </div>
                 <div className="flex-none w-1/4 text-white pl-4 mr-8">
                   <div className="text-sm">
-                    {`${time.getFullYear()}-${time.getMonth()}-${time.getDate()}`}
+                    {/* Jan.getMonth() = 0 */}
+                    {`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`}
                   </div>
                   <span title={item.text} className="text-xl font-serif line-clamp-2">
                     {item.text}
