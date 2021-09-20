@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Source Han Sans', 'sans-serif', 'system-ui'],
+      serif: ['ui-serif'],
     },
     extend: {
       colors: {
@@ -15,5 +16,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    // ...
+  ],
 }

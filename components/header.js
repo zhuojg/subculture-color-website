@@ -5,19 +5,9 @@ const Header = () => {
 
   return (
     <div className="z-50">
-      <div className="fixed bottom-0 lg:top-0 lg:bottom-auto lg:h-8 left-0 text-white ml-4 my-2 flex flex-col justify-center">
+      <div className="fixed top-0 h-8 left-0 text-white ml-4 my-2 flex flex-col justify-center">
         <div className="lg:flex lg:flex-row lg:space-x-4">
           <div className="text-white">亚文化 - 色彩生成器</div>
-          <div className="text-gray-500">
-            © {new Date().getFullYear()} liyufan & zhuojinggang
-          </div>
-          <a
-            href="https://beian.miit.gov.cn/"
-            target="_blank"
-            className="text-gray-500"
-          >
-            京ICP备2021028932号-1
-          </a>
         </div>
       </div>
 

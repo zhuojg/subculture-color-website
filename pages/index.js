@@ -78,6 +78,19 @@ const Home = () => {
           <div className=""></div>
         </div>
       </div>
+
+      <div className="flex-none py-2 flex flex-col lg:flex-row space-x-4 w-full justify-center">
+        <div className="text-gray-500 text-center">
+          © {new Date().getFullYear()} liyufan & zhuojinggang
+        </div>
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          className="text-gray-500 text-center"
+        >
+          京ICP备2021028932号-1
+        </a>
+      </div>
     </div>
   )
 }

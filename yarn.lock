@@ -171,6 +171,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@tailwindcss/line-clamp@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.nlark.com/@tailwindcss/line-clamp/download/@tailwindcss/line-clamp-0.2.1.tgz#efafe556719c26a3926f0679a98307c4bc9270d2"
+  integrity sha1-76/lVnGcJqOSbwZ5qYMHxLyScNI=
+
 "@types/node@*":
   version "16.7.2"
   resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.2.tgz?cache=0&sync_timestamp=1629939883549&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.7.2.tgz#0465a39b5456b61a04d98bd5545f8b34be340cb7"
