@@ -70,7 +70,7 @@ const Poem = () => {
 
       <div className="w-full py-12 flex flex-col">
         {!loading &&
-          record.map((item, index) => {
+          record.reverse().map((item, index) => {
             const time = new Date(item.time * 1000)
 
             return (
@@ -86,7 +86,6 @@ const Poem = () => {
                 </div>
                 <div className="flex-none w-1/4 text-white pl-4 mr-8">
                   <div className="text-sm">
-                    {/* Jan.getMonth() = 0 */}
                     {`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`}
                   </div>
                   <span title={item.text} className="text-xl font-serif line-clamp-2">
