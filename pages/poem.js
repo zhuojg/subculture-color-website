@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Loading from '../components/loading'
 import axios from 'axios'
+import moment from 'moment'
 
 const Poem = () => {
   const router = useRouter()
@@ -84,9 +85,10 @@ const Poem = () => {
                 </div>
                 <div className="flex-none w-1/4 pl-4 mr-8">
                   <div className="text-xs lg:text-sm text-gray-500">
-                    {`${time.getFullYear()}-${
+                    {/* {`${time.getFullYear()}-${
                       time.getMonth() + 1
-                    }-${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`}
+                    }-${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`} */}
+                    {moment(time).format('YYYY-MM-DD HH:mm:ss')}
                   </div>
                   <span
                     title={item.text}
