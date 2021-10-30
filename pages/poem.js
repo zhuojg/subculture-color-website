@@ -26,16 +26,16 @@ const Poem = () => {
   }, [])
 
   return (
-    <div className="w-screen min-h-screen bg-black">
+    <div className="w-full min-h-screen bg-black overflow-x-hidden">
       <Head>
         <title>群体色彩诗篇</title>
       </Head>
 
       {loading && <Loading loadingInfo="正在加载，请稍候" />}
 
-      <div className="fixed h-8 top-0 left-0 ml-4 my-2">
+      <div className="fixed h-10 top-0 left-0 px-4 py-2 flex justify-between w-full bg-black z-10">
         <div
-          className="flex cursor-pointer h-full"
+          className="flex cursor-pointer h-full z-10"
           onClick={() => {
             router.push('/')
           }}
@@ -60,10 +60,8 @@ const Poem = () => {
             亚文化 - 色彩生成
           </div>
         </div>
-      </div>
 
-      <div className="fixed h-8 top-0 right-0 mr-4 my-2">
-        <div className="text-white h-full flex flex-col justify-center">
+        <div className="text-white h-full flex flex-col justify-center z-10">
           群体色彩诗篇
         </div>
       </div>
@@ -84,11 +82,16 @@ const Poem = () => {
                     />
                   ))}
                 </div>
-                <div className="flex-none w-1/4 text-white pl-4 mr-8">
-                  <div className="text-sm">
-                    {`${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`}
+                <div className="flex-none w-1/4 pl-4 mr-8">
+                  <div className="text-xs lg:text-sm text-gray-500">
+                    {`${time.getFullYear()}-${
+                      time.getMonth() + 1
+                    }-${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`}
                   </div>
-                  <span title={item.text} className="text-xl font-serif line-clamp-2">
+                  <span
+                    title={item.text}
+                    className="text-white text-sm lg:text-xl font-serif line-clamp-2"
+                  >
                     {item.text}
                   </span>
                 </div>
