@@ -68,7 +68,7 @@ const Poem = () => {
 
       <div className="w-full py-12 flex flex-col">
         {!loading &&
-          record.map((item, index) => {
+          record.reverse().map((item, index) => {
             const time = new Date(item.time * 1000)
 
             return (
