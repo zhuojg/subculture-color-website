@@ -4,7 +4,7 @@ const Header = () => {
   const router = useRouter()
 
   return (
-    <div className="z-50">
+    <div className="fixed z-50 bg-black h-12 w-full">
       <div className="fixed top-0 h-8 left-0 text-white ml-4 my-2 flex flex-col justify-center">
         <div className="lg:flex lg:flex-row lg:space-x-4">
           <div className="text-white">亚文化 - 色彩生成器</div>

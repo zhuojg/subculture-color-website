@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Loading from '../components/loading'
 import Header from '../components/header'
 import axios from 'axios'
@@ -7,9 +7,10 @@ import axios from 'axios'
 const Home = () => {
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState()
-  const [colors, setColors] = useState(Array(5).fill('#000000'))
+  const [colors, setColors] = useState(undefined)
 
   const inputRef = useRef()
+  const p5Ref = useRef()
 
   const generateData = async (inputText) => {
     setLoading(true)
@@ -26,6 +27,76 @@ const Home = () => {
     setLoading(false)
   }
 
+  useEffect(() => {
+    const init = async () => {
+      if (typeof window !== 'undefined') {
+        p5Ref.current.innerHTML = ''
+
+        let sketch = await import('p5').then((module) => {
+          let p5 = module.default
+          let sketch = new p5((s) => {
+            s.setup = () => {
+              s.createCanvas(
+                p5Ref.current.clientWidth,
+                p5Ref.current.clientHeight,
+              )
+              s.noLoop()
+              s.noStroke()
+              s.frameRate(10)
+            }
+
+            if (colors) {
+              s.draw = () => {
+                function makeTile(x, y, gap) {
+                  s.shuffle(colors, true)
+                  s.fill(colors[0])
+                  s.square(x, y, gap)
+                  s.push()
+                  s.translate(x + gap / 2, y + gap / 2)
+                  s.rotate(s.random([0, s.PI / 2, s.PI, (3 * s.PI) / 2]))
+                  s.fill(colors[1])
+                  let r = s.floor(s.random(4))
+                  if (r == 0) {
+                    s.arc(-gap / 2, 0, gap, gap, -s.PI / 2, s.PI / 2)
+                  } else if (r == 1) {
+                    s.rect(-gap / 2, -gap / 2, gap / 2, gap)
+                  } else if (r == 2) {
+                    s.triangle(
+                      -gap / 2,
+                      -gap / 2,
+                      gap / 2,
+                      -gap / 2,
+                      -gap / 2,
+                      gap / 2,
+                    )
+                  }
+                  s.pop()
+                }
+
+                let gap = p5Ref.current.clientWidth / 5
+
+                for (let x = 0; x < p5Ref.current.clientWidth; x += gap) {
+                  for (let y = 0; y < p5Ref.current.clientHeight; y += gap) {
+                    if (s.random() < 1 / 2) {
+                      makeTile(x, y, gap / 2)
+                      makeTile(x + gap / 2, y, gap / 2)
+                      makeTile(x, y + gap / 2, gap / 2)
+                      makeTile(x + gap / 2, y + gap / 2, gap / 2)
+                    } else {
+                      makeTile(x, y, gap)
+                    }
+                  }
+                }
+              }
+            }
+          }, p5Ref.current)
+        })
+      }
+    }
+
+    init()
+  }, [colors])
+
   return (
     <div className="h-screen w-screen bg-black flex flex-col">
       <Head>
@@ -37,7 +108,7 @@ const Home = () => {
 
       <div className="flex h-full w-full lg:flex-col flex-row">
         <div className="flex-shrink h-full w-full relative">
-          {colors && (
+          {/* {colors && (
             <div className="h-full w-full absolute left-0 top-0 pt-12 z-0">
               <div className="h-full w-full grid lg:grid-rows-1 lg:grid-cols-5 grid-rows-5 grid-cols-1 gap-4">
                 {colors.map((color, index) => (
@@ -45,7 +116,12 @@ const Home = () => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
+
+          <div
+            className="h-full w-full absolute left-0 top-0 z-0"
+            ref={p5Ref}
+          />
 
           <div className="h-full flex flex-col justify-center w-4/5 lg:w-1/2 mx-auto z-10">
             <input
@@ -67,7 +143,7 @@ const Home = () => {
           {loading && <Loading loadingInfo={`正在生成色板：${input}`} />}
         </div>
 
-        <div className="py-4 w-full lg:grid grid-rows-1 grid-cols-5 hidden">
+        {/* <div className="py-4 w-full lg:grid grid-rows-1 grid-cols-5 hidden">
           {colors.map((color, index) => (
             <div className="flex flex-col justify-center w-full" key={index}>
               <div className="mx-auto border border-white px-3 py-2 text-white">
@@ -75,8 +151,7 @@ const Home = () => {
               </div>
             </div>
           ))}
-          <div className=""></div>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex-none py-2 flex flex-col lg:flex-row space-x-4 w-full justify-center">
